@@ -3,16 +3,21 @@ package hagai.edu.eventscalc;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        View.OnClickListener,
+        View.OnTouchListener {
     //properties:
     private TextView tvResult;
     private String lastOperator = "=";
     private double firstOperand = 0;
+
+    private  Button btnClickMe;
 
 
 
@@ -26,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
         String s = String.format("%2.0f", x);
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+
+        (btnClickMe) = (Button) findViewById(R.id.btnClickMe);
+        //view.OnClickListener listener = this
+        btnClickMe.setOnClickListener(this);
+        btnClickMe.setOnTouchListener(this);
+
+
     }
     //if 0 clear and set the new number.
     //else append the new number
@@ -100,5 +112,15 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
             return null;}
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
     }
 }
